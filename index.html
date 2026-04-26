@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Course</title>
+    <style>
+        /* Base Page Styling */
+        body {
+            background-color: #0f172a; /* Dark sleek background */
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Card Container */
+        .card {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 { color: #1e293b; margin-bottom: 1.5rem; font-size: 26px; }
+        h2 { color: #94a3b8; font-size: 14px; margin: 15px 0; text-transform: uppercase; letter-spacing: 1px; }
+        header { font-weight: 600; color: #475569; margin: 10px 0; display: block; }
+
+        /* QR Image Styling */
+        .qr-container {
+            margin: 1rem 0;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            background: #f8fafc;
+        }
+        .qr-container img {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* SHINY BUTTON STYLING */
+        .classic-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            /* Vibrant Gradient */
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+            border: none;
+            cursor: pointer;
+            width: 80%;
+        }
+
+        .classic-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.6);
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+        }
+
+        /* Timer Styling */
+        #timer-display {
+            margin-top: 25px;
+            padding: 12px;
+            background: #fff1f2;
+            border-radius: 12px;
+            color: #e11d48;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 1px solid #fecdd3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Purchase Course</h1>
+
+    <div class="qr-container">
+        <img src="Qr.png" alt="QR Code">
+    </div>
+
+    <header>Paid Via QR?</header>
+    <div>
+        <a href="https://forms.gle/by1UaSpMxPo4Dh676" class="classic-btn">Submit Info</a>
+    </div>
+
+    <h2>OR</h2>
+
+    <div>
+        <a href="upi://pay?pa=8168968584@fam&am=10.00&cu=INR" class="classic-btn">Pay via UPI</a>
+    </div>
+
+    <div id="timer-display">
+        Time remaining: <span id="time">05:00</span>
+    </div>
+</div>
+
+<script>
+  let timeLeft = 300; 
+  const timerElement = document.getElementById('time');
+
+  const countdown = setInterval(function() {
+    timeLeft--;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    timerElement.textContent = 
+      (minutes < 10 ? "0" : "") + minutes + ":" + 
+      (seconds < 10 ? "0" : "") + seconds;
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      document.body.innerHTML = '<div style="color:white; font-size: 2rem; font-family: sans-serif; font-weight:bold;">Session Expired</div>';
+      document.body.style.backgroundColor = "black";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
